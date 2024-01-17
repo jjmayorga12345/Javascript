@@ -25,9 +25,22 @@ p2.color = `blue`
 var ball = new Box();
 ball.w = 20
 ball.h = 20
-ball.vx = 2
-ball.vy = 2
+ball.vx = Math.round(rand(-1, 1)) * 3
+
+if(ball.vx === 0)
+{
+    ball.vx = 3
+}
+
+ball.vy = 5
 ball.color = `orange`
+
+function rand(min, max)
+{
+    return Math.random() * (max - min) + min
+}
+
+console.log(ball.vx)
 
 
 
