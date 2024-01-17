@@ -126,6 +126,7 @@ function main()
     {
         ball.x = c.width/2
         ball.y = c.height/2
+        player[1].score += 1
     }
     if(ball.x > c.width)
     {
@@ -161,5 +162,5 @@ function main()
     pad[0].draw()
     pad[1].draw()
     ball.draw()
-    console.log(player[0].score)
+    console.log(`${player[0].score} | ${player[1].score}`)
 }
