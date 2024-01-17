@@ -9,17 +9,29 @@ var timer = setInterval(main, 1000/60)
 var fy = .97
 
 //p1 setup
-var p1 = new Box();
-p1.w = 20
-p1.h = 150
-p1.x = 0 + p1.w/2
-p1.color = `red`
+const player = [];
+player[0] = new Player()
+player[1] = new Player()
 
-var p2 = new Box();
-p2.w = 20
-p2.h = 150
-p2.x = 780 + p2.w/2
-p2.color = `blue`
+const pad = []
+pad[0] = player[0].pad
+pad[1] = player[1].pad
+
+pad[0].w = 20
+pad[0].h = 150
+pad[0].x = 0 + pad[0].w/2
+pad[0].color = `red`
+
+
+pad[1].w = 20
+pad[1].h = 150
+pad[1].x = 780 + pad[1].w/2
+pad[1].color = `blue`
+
+
+
+
+
 
 //ball setup
 var ball = new Box();
@@ -52,59 +64,63 @@ function main()
     //p1 accelerates when key is pressed 
     if(keys[`w`])
     {
-       p1.vy += -p1.force
+       pad[0].vy += -pad[0].force
     }
-    //p2 key up
+    //pad[1] key up
     if(keys[`ArrowUp`])
     {
-        p2.vy += -p2.force
+        pad[1].vy += -pad[1].force
     }
 
     if(keys[`s`])
     {
-        p1.vy += p1.force
+        pad[0].vy += pad[0].force
     }
-    //p2 key down
+    //pad[1] key down
     if(keys[`ArrowDown`])
     {
-        p2.vy += p2.force
+        pad[1].vy += pad[1].force
     }
 
     //applies friction
-    p1.vy *= fy
-    p2.vy *= fy
+    pad[0].vy *= fy
+    pad[1].vy *= fy
     //player movement
-    p1.move();
-    p2.move();
+    pad[0].move();
+    pad[1].move();
 
     //ball movement
     ball.move()
 
     //p1 collision
-    if(p1.y < 0+p1.h/2)
+    if(pad[0].y < 0+pad[0].h/2)
     {
-        p1.y = 0+p1.h/2
+        pad[0].y = 0+pad[0].h/2
     }
-    if(p1.y > c.height-p1.h/2)
+    if(pad[0].y > c.height-pad[0].h/2)
     {
-        p1.y = c.height-p1.h/2
+        pad[0].y = c.height-pad[0].h/2
     }
-    //p2 collision
-    if(p2.y < 0+p2.h/2)
+    //pad[1] collision
+    if(pad[1].y < 0+pad[1].h/2)
     {
-        p2.y = 0+p2.h/2
+        pad[1].y = 0+pad[1].h/2
     }
-    if(p2.y > c.height-p2.h/2)
+    if(pad[1].y > c.height-pad[1].h/2)
     {
-        p2.y = c.height-p2.h/2
+        pad[1].y = c.height-pad[1].h/2
     }
 
+    
+   
 
     //ball collision 
     if(ball.x < 0)
     {
         ball.x = c.width/2
         ball.y  =c.height/2
+        player[0].score += 1
+
     }
     if(ball.x > 800)
     {
@@ -129,20 +145,21 @@ function main()
     }
 
     //p1 with ball collision
-    if(ball.collide(p1))
+    if(ball.collide(pad[0]))
     {
-        ball.x = p1.x + p1.w/2 + ball.w/2
+        ball.x = pad[0].x + pad[0].w/2 + ball.w/2
         ball.vx = -ball.vx;
     }
-    //p2 with ball collision
-    if(ball.collide(p2))
+    //pad[1] with ball collision
+    if(ball.collide(pad[1]))
     {
-        ball.x = p2.x - p2.w/2 - ball.w/2
+        ball.x = pad[1].x - pad[1].w/2 - ball.w/2
         ball.vx = -ball.vx;
     }
 
     //draw the objects
-    p1.draw()
-    p2.draw()
+    pad[0].draw()
+    pad[1].draw()
     ball.draw()
+    console.log(player[0].score)
 }
