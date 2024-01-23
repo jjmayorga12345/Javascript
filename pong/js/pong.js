@@ -119,14 +119,14 @@ function main()
     {
         ball.x = c.width/2
         ball.y  =c.height/2
-        player[0].score += 1
+        player[1].score += 1
 
     }
     if(ball.x > 800)
     {
         ball.x = c.width/2
         ball.y = c.height/2
-        player[1].score += 1
+        player[0].score += 1
     }
     if(ball.x > c.width)
     {
