@@ -47,6 +47,45 @@ function ListOp() {
     }
   }
 
+// loop for up key
+  for(let i=0; i<player.length; i++){
+  var keyUp = document.querySelectorAll(".u")
+  keyUp[i].addEventListener("input",keyUpChange)
+
+  function keyUpChange(e){
+    player[i].keys.u = e.target.value
+  }
+}
+
+// loop for down key
+  for(let i=0; i<player.length; i++){
+  var keyDown = document.querySelectorAll(".d")
+  keyDown[i].addEventListener("input",keyDownChange)
+
+  function keyDownChange(e){
+    player[i].keys.d = e.target.value
+  }
+}
+
+// loop for straight key
+  for(let i=0; i<player.length; i++){
+  var keyStraight = document.querySelectorAll(".s")
+  keyStraight[i].addEventListener("input",keyStraightChange)
+
+  function keyStraightChange(){
+    player[i].keys.s = e.target.value
+  }
+}
+
+  // for loop for pausing
+  for(let i=0; i<player.length; i++){
+  keyUp[i].addEventListener("focus",e=>currentState="pause")
+  keyDown[i].addEventListener("focus",e=>currentState="pause")
+  keyStraight[i].addEventListener("focus",e=>currentState="pause")
+  }
+
+
+
 
 
 
