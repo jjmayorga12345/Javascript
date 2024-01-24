@@ -1,5 +1,6 @@
 //canvas and context
 var c = document.querySelector(`#pong`)
+var scoreHtml = document.querySelectorAll('#score div');
 var ctx = c.getContext(`2d`)
 
 //timer to make the game run at 60fps
@@ -162,5 +163,11 @@ function main()
     pad[0].draw()
     pad[1].draw()
     ball.draw()
-    console.log(`${player[0].score} | ${player[1].score}`)
+
+    for (var i = 0; i < scoreHtml.length; i++) {
+        scoreHtml[i].innerText = `${player[0].score} | ${player[1].score}`;
+    }
+
+    console.log(`${player[0].score} | ${player[1].score}`);
 }
+
