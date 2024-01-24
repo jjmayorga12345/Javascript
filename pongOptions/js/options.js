@@ -1,11 +1,69 @@
+  
+var x = document.querySelector("#options h2")
+x.addEventListener("click",ListOp)
+
+
+
 function ListOp() {
-    var x = document.getElementById("OptionsCloser");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
+    var x = document.querySelector("#options div");
+    x.classList.toggle("hidden")
+
+  }
+
+
+
+
+    var fselc = document.querySelectorAll(".fill")
+
+
+    for(let i=0; i<player.length; i++)
+    
+    {
+
+    fselc[i].addEventListener("input",ColorChange)
+
+
+    
+    function ColorChange(e){
+      console.log(e.target)
+      player[i].fill = e.target.value
+      pad[i].fill = e.target.value 
+      e.target.nextElementSibling.innerHTML=e.target.value
+    }
+
+
+  }
+
+
+    var stroke = document.querySelectorAll(".stroke")
+
+    for(let i=0; i<player.length; i++){
+    stroke[i].addEventListener("input", StrokeChange)
+
+    function StrokeChange(e){
+      player[i].stroke = e.target.value
+      pad[i].stroke = e.target.value
+      e.target.nextElementSibling.innerHTML=e.target.value
     }
   }
+
+
+
+
+
+
+
+    
+
+    console.log(fselc)
+
+
+
+
+
+
+
+
 
 /*---------
     Program the two fill inputs to do the following:

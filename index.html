@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function drawBox() {
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(0,0,600,400);
+        }
+    </script>
+</head>
+<body>
+<canvas id="myCanvas" width="600" height="400" style="border:1px solid  #c3c3c3;">
+</canvas>
+
+<FORM NAME="table">
+    <select>
+        <option id=r value="Red">Red</option>
+        <option id=g value="Green">Green</option>
+        <option id=b value="Blue">Blue</option>
+    </select>
+    <input type=button value="Draw me a box" onClick="drawBox()">
+</FORM>
+</body>
+</html>
