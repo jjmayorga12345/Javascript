@@ -164,6 +164,7 @@ function main()
     pad[1].draw()
     ball.draw()
 
+
     for (var i = 0; i < scoreHtml.length; i++) {
         scoreHtml[i].innerText = `${player[0].score} | ${player[1].score}`;
     }
