@@ -85,6 +85,17 @@ function ListOp() {
   }
 
 
+  // ball color change
+  var ballColor = document.querySelector(".ballcolor")
+  ballColor.addEventListener("input",ballColorChange)
+  
+  function ballColorChange(e){
+    o[2].fill = e.target.value
+  }
+
+  ballColor.addEventListener("focus",e=>currentState="pause")
+
+
 
 
 
