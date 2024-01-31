@@ -50,10 +50,13 @@
         const newGameBtn = document.createElement('button');
         newGameBtn.appendChild(document.createTextNode('New Game'));
         newMenu.appendChild(newGameBtn)
+        newGameBtn.setAttribute('data-load', 'false');
 
         const continueBtn = document.createElement('button');
         continueBtn.appendChild(document.createTextNode('Continue'));
         newMenu.appendChild(continueBtn)
+        continueBtn.setAttribute('data-load', 'true')
+
 
         const highscoreBtn = document.createElement('button');
         highscoreBtn.appendChild(document.createTextNode('High Scores'));
@@ -86,8 +89,7 @@
             console.log(`new game`)
             $(`#startNewMenu`).animate({opacity: 0}, 1000, function(){
                 menus.removeChild(newMenu)
-                window.location = `lobby.html?${e.target.dataset.load}`
-
+                window.location = `lobby.html?load=${e.target.dataset.load}`
             });
         })
 
@@ -95,7 +97,7 @@
             console.log(`continue game`)
             $(`#startNewMenu`).animate({opacity: 0}, 1000, function(){
                 menus.removeChild(newMenu)
-                window.location = `lobby.html?${e.target.dataset.load}`
+                window.location = `lobby.html?load=${e.target.dataset.load}`
 
             });
         })
@@ -108,7 +110,6 @@
 
             });
         })
-
 
 
 
