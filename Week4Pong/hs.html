@@ -35,6 +35,11 @@
         //
         var menus = document.querySelector(`#menus`);
 
+        let params = (new URL(document.location)).searchParams;
+        let name = params.get("load");
+
+        alert(name);
+
         
        
 

@@ -65,7 +65,7 @@
 
         var timer = setTimeout(loadStartMenu, 1000);
         function loadStartMenu(){
-            $(`#load`).animate({opacity: 0}, 2000, function() {
+            $(`#load`).animate({opacity: 0}, 400, function() {
                 menus.removeChild(loadDiv)
                 menus.appendChild(startMenu)
                 $(`#start`).animate({opacity: 1}, 2000);
@@ -108,6 +108,10 @@
 
             });
         })
+
+
+
+
 
 
 
