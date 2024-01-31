@@ -146,29 +146,75 @@ function main()
        
     }
 
-    //p1 with ball collision
-    if(ball.collide(pad[0]))
+    for(let i=0; i<pad.length; i++)
     {
-        ball.x = pad[0].x + pad[0].w/2 + ball.w/2
-        ball.vx = -ball.vx;
+        if(keys[player[i].keys.u])
+        {
+            pad[i].vy += -player[i].force;
+        }
+
+        if(keys[player[i].keys.d])
+        {
+            pad[i].vy += player[i].force;
+        }
+
+        
+        //applies friction
+        pad[i].vy *= player[i].fy;
+        //player movement
+        pad[i].move();
+
+        //pad[0] collision
+        if(pad[i].y < pad[i].h/2)
+        {
+            pad[i].y = pad[i].h/2;
+            pad[i].vy =0;
+        }
+        if(pad[i].y > c.height-pad[i].h/2)
+        {
+            pad[i].y = c.height-pad[i].h/2;
+            pad[i].vy =0;
+        }
+        
+        if(ball.collide(goals[i]))
+        {
+            ball.x = c.width/2;
+            player[i].score++;
+            scoreBoard[i].innerHTML = player[i].score;
+        }
+
+        if(ball.collide(pad[i]))
+        {
+            ball.x = pad[i].x + pad[i].dir * (pad[i].w/2 + ball.w/2);
+            ball.vx = pad[i].dir * player[i].power;
+            
+            if(keys[player[i].keys.s])
+            {
+                ball.vy = 0;
+                ball.vx = player[i].power * pad[i].dir
+            }
+            else
+            {
+                if(ball.y < pad[i].y - pad[i].h/6)
+                {
+                    ball.vy = -player[i].power;
+                }
+                if(ball.y > pad[i].y + pad[i].h/6)
+                {
+                    ball.vy = player[i].power;
+                }
+            }
+        }
+       
     }
-    //pad[1] with ball collision
-    if(ball.collide(pad[1]))
-    {
-        ball.x = pad[1].x - pad[1].w/2 - ball.w/2
-        ball.vx = -ball.vx;
-    }
+    
+    //draw the objects (Uses the array forEach function where i is the object stored in the o Array)
+    o.forEach(function (i){
+        i.draw()
+    })
+    pad.forEach(function(i){
+        i.debug()
+    })
 
-    //draw the objects
-    pad[0].draw()
-    pad[1].draw()
-    ball.draw()
-
-
-    for (var i = 0; i < scoreHtml.length; i++) {
-        scoreHtml[i].innerText = `${player[0].score} | ${player[1].score}`;
-    }
-
-    console.log(`${player[0].score} | ${player[1].score}`);
 }
 
