@@ -82,6 +82,35 @@
             });
         })
 
+        newGameBtn.addEventListener(`click`, (e)=>{
+            console.log(`new game`)
+            $(`#startNewMenu`).animate({opacity: 0}, 1000, function(){
+                menus.removeChild(newMenu)
+                window.location = `lobby.html?${e.target.dataset.load}`
+
+            });
+        })
+
+        continueBtn.addEventListener(`click`, (e)=>{
+            console.log(`continue game`)
+            $(`#startNewMenu`).animate({opacity: 0}, 1000, function(){
+                menus.removeChild(newMenu)
+                window.location = `lobby.html?${e.target.dataset.load}`
+
+            });
+        })
+
+        highscoreBtn.addEventListener(`click`, (e)=>{
+            console.log(`highscores`)
+            $(`#startNewMenu`).animate({opacity: 0}, 1000, function(){
+                menus.removeChild(newMenu)
+                window.location = 'hs.html'
+
+            });
+        })
+
+
+
     </script>
 </body>
 </html>
