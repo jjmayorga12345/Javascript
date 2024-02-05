@@ -27,40 +27,30 @@
         <section class="blank"></section>
     </main>
     <script>
+        var highScoreList = [
+            {name: 'Joel', score: 1000},
+            {name: 'Leynadth', score: 980}
+        ];
+    
+        var menus = document.querySelector('#menus');
+    
 
-        var message = ""
+        var message = '';
+    
 
-        
-for (let index = 0; index < array.length; index++) {
-    const element = array[index];
-            var highScoreList = [
-                {name:`aaa`, score:1000},
-                {name:`bbb`, score:980}
-            ]
-}
-
-
-
-
-        
-        //
-        var menus = document.querySelector(`#menus`);
-
-
-
-        
-       
-
-     
-
-
-
-      
-        
-
-
-        
-
+        for (var i = 0; i < highScoreList.length; i++) {
+            var highscorePlayer = highScoreList[i];
+    
+            var playerHs = document.createElement('div');
+            playerHs.setAttribute('id', 'high-scores');
+            playerHs.textContent = `
+                Player: ${highscorePlayer.name}, Score: ${highscorePlayer.score}`;
+    
+            menus.appendChild(playerHs);
+        }
     </script>
+    
+    
+    
 </body>
 </html>
