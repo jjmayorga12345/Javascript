@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="name">
+        <button id="save">Save</button>
+        <button id="del">Delete</button>
+    </div>
+    
+    <div id="output"></div>
+    <script>
+        var input = document.querySelector('#name')
+        var save = document.querySelector('#save')
+        var del = document.querySelector('#del')
+        var output = document.querySelector('#output')
+
+        window.addEventListener('load', e=>{
+            if(localStorage.getItem('name'))
+            {
+                output.innerHTML+=localStorage.getItem('name');
+            }
+            else
+            {
+                output.innerHTML+='Nothing is saved!';
+            }
+        })
+
+        save.addEventListener('click', e=>{
+            localStorage.setItem('name', input.value);
+        })
+
+        del.addEventListener('click', e=>{
+            localStorage.clear();
+        })
+    </script>
+    
+</body>
+</html>
