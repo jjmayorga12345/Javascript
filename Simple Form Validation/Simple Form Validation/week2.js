@@ -23,7 +23,7 @@ function validateForm() {
     document.getElementById('confirmemail-error').innerHTML = '';
     document.getElementById('confirmemail').style.border = '1px solid black';
 
-    // vars for regex vali's
+
     let specChar = /[^a-zA-Z\-]/;
     let emailvalid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     let phonevalid = /^(\d{3}-?)?\d{3}-?\d{4}$/;
@@ -32,7 +32,7 @@ function validateForm() {
 
 
 
-    // first name vali
+    //first
     if (blankvalid.test(firstName)) {
         document.getElementById('fn-error').innerHTML = '* Please input a first name';
         document.getElementById('fn-error').style.color = 'red';
@@ -85,13 +85,11 @@ function validateForm() {
     if (blankvalid.test(phone)){
         document.getElementById('phone-error').innerHTML = '* Please input a phone number.';
         document.getElementById('phone-error').style.color = 'red';
-        document.getElementById('phonelabel').style.color = 'red';
         document.getElementById('phone').style.border = '1px solid red';
         valid = false;
     } else if (!phonevalid.test(phone)) {
         document.getElementById('phone-error').innerHTML = '* Please input a valid phone number.';
         document.getElementById('phone-error').style.color = 'red';
-        document.getElementById('phonelabel').style.color = 'red';
         document.getElementById('phone').style.border = '1px solid red';
         valid = false;
     } else if (phonevalid.test(phone)) {
@@ -103,6 +101,12 @@ function validateForm() {
         document.getElementById('subBtn').style.border='1px solid red';
     }
 
+    var phone = document.getElementById('phone').value;
+    var subPhone = phone.substring(0, 3) + '-' + phone.substring(3, 6) + '-' + phone.substring(6);
+    document.getElementById('phone').value = subPhone;
+    
+    
+
 
     if (valid) {
 
@@ -113,7 +117,7 @@ function validateForm() {
             fname: firstName,
             lname: lastName,
             email: emailbox,
-            phone: phone
+            phone: subPhone
         };
 
 
