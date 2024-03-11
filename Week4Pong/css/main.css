@@ -22,7 +22,7 @@ main{
 }
 nav{
     box-sizing: border-box;
-    padding:10px;
+    padding:50px;
 }
 a{
     display:inline-block;
