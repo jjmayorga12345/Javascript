@@ -18,31 +18,28 @@
     </div>
     <script>
 
-    window.addEventListener(`load`, load)
+    window.addEventListener('load', load);
 
-    async function load(e){
+    async function load(e) {
         var promise = await fetch("http://localhost:80/jeep");
-        var data = await promise.json(data)
+        var data = await promise.json(data);
         let sortedData = data.sort((a, b) => (b.year - a.year));
-        console.log(sortedData)
+        console.log(sortedData);
 
-        var output = document.querySelector(`#output`);
-        var message =``
-        for(let i=0; i<data.length; i++)
-        {
-            message += `<div class="item">`
-                for(let prop in data[i])
-                {
-                    message += `<p>${prop}:${data[i][prop]}</p>`
-                }
-                // ad button
-            message += `<button class="deleteButton" data-index="${i}">Delete</button></div>`
+        var output = document.querySelector('#output');
+        var message = '';
+        for (let i = 0; i < data.length; i++) {
+            message += `<div class="item">`;
+            for (let prop in data[i]) {
+                message += `<p>${prop}:${data[i][prop]}</p>`;
+            }
+            // delete button
+            message += `<button class="deleteButton" data-index="${i}">Delete</button></div>`;
         }
 
-        output.innerHTML = message
+        output.innerHTML = message;
 
-        //query select all the buttons
-        //add event listeners to each button
+
         document.querySelectorAll('.deleteButton').forEach(button => {
             button.addEventListener('click', async (e) => {
                 const index = e.target.getAttribute('data-index');
@@ -52,37 +49,29 @@
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     }
-                })
-                
-                load();
-            })
-        })
+                });
+                load(); 
+            });
+        });
     }
 
-
-    document.getElementById(`submitBtn`).addEventListener(`click`, async (e)=>{
-
-       await fetch("http://localhost:80/jeep", {
-    
-            
+    document.getElementById('submitBtn').addEventListener('click', async (e) => {
+        await fetch("http://localhost:80/jeep", {
             method: "POST",
-            
-            // Adding body or contents to send
+
             body: JSON.stringify({
-                make: document.querySelector(`input[name="make"]`).value,
-                model: document.querySelector(`input[name="model"]`).value,
-                year: document.querySelector(`input[name="year"]`).value
+                make: document.querySelector('input[name="make"]').value,
+                model: document.querySelector('input[name="model"]').value,
+                year: document.querySelector('input[name="year"]').value
             }),
-            
-            // Adding headers to the request
+
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
-        })
+        });
+        load();
+    });
 
-        load()
-    })    
-   
     </script>
 </body>
 </html>
