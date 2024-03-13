@@ -28,6 +28,35 @@
 			{name:`Raiden`, age:12},
 			{name:`KJ`, age:9}
 		]
+
+        peeps.sort((a , b) => {
+            return a.age - b.age;
+        });
+
+        var mainElement = document.querySelector('main');
+
+        peeps.forEach(people => {
+            var row = document.createElement('div');
+            row.setAttribute('class', 'row');
+
+            for (var properties in people) {
+                var propertiesDiv = document.createElement('div');
+                propertiesDiv.textContent = people[properties];
+                row.appendChild(propertiesDiv);
+            }
+
+            if (people.age < 21) {
+                row.style.color = 'blue';
+            } 
+            else 
+            {
+                row.style.color = 'red';
+            }
+
+            mainElement.appendChild(row);
+        });
+    
+
        /*
         sort the array in descending order
         This will help https://www.javascripttutorial.net/array/javascript-sort-an-array-of-objects/
