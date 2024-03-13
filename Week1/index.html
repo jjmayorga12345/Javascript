@@ -4,13 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pong</title>
-    <link rel="stylesheet" href="style.css">
+    <title>F1</title>
+    <style>
+        .basic {
+            border: 1px solid black;
+        }
+        .message {
+            border: 1px solid black;
+            color: red;
+            padding: 20px;
+            margin: 0 0 10px 0;
+        }
+        .table {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: min-content auto;
+            grid-gap: 10px;
+            font-size: 12px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <canvas width="800" height="800"></canvas>
-    <script src="js/box.js"></script>
-    <script src="js/game.js"></script>
-    
+    <main>
+
+    </main>
+    <script>
+
+        var messages = [`Hi`,`Hello`,`Goodbye`];
+
+        var counter = 0;
+
+        var config = {
+            tag: 'div',
+            id: 'm',
+            class: 'message',
+            parent: 'main'
+        };
+
+        function addMessage(message, obj) {
+            var element = document.createElement(obj.tag);
+            element.setAttribute('id', obj.id + counter);
+            counter++;
+            element.setAttribute('class', obj.class);
+            var textNode = document.createTextNode(message);
+            element.appendChild(textNode);
+            document.querySelector(obj.parent).appendChild(element);
+            return element;
+        }
+
+        messages.forEach(message => {
+            addMessage(message, config);
+        });
+
+        (function display(list){
+            list.forEach(index => {
+                index.innerHTML += `<div class="table"><div><b>id:</b></div><div>${index.id}</div><div><b>class:</b></div><div>${index.classList[0]}</div></div>`;
+            });
+        })(document.querySelectorAll(`.message`));
+    </script>
 </body>
 </html>
